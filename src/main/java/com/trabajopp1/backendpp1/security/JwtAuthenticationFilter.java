@@ -31,7 +31,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
-        // 🚨 1. EXCEPCIÓN PARA RUTAS PÚBLICAS
+        // 1. EXCEPCIÓN PARA RUTAS PÚBLICAS
         // Si la ruta es de autenticación, no validamos el token y dejamos que el
         // Controller la maneje.
         if (request.getServletPath().contains("/api/auth/")) {

@@ -25,13 +25,11 @@ public class PedidoDia {
     @ToString.Exclude
     private Pedido pedido; // FK
 
-    // --- CAMBIO CRUCIAL ---
-    // ANTES: Tenías id_menu_dia. Ahora mapeamos al MenuPlato (la oferta con stock)
+    
     // Relación N:1 con MenuPlato (id_menu_plato FK)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_menu_plato", nullable = false)
     @ToString.Exclude
-    private MenuPlato menuPlato; // ¡NUEVA FK!
+    private MenuPlato menuPlato; 
 
-    // NOTA: El campo 'menuDia' antiguo debe eliminarse de aquí.
 }

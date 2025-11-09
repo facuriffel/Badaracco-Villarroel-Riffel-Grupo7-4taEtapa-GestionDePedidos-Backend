@@ -74,8 +74,6 @@ public class PlatoService {
     // ------------------------------------------------------------------
     /**
      * Elimina un plato por su ID.
-     * IMPORTANTE: En un sistema real, antes de eliminar, deberías verificar 
-     * si el plato está asociado a menús activos o pedidos históricos.
      */
     public void eliminarPlato(Integer idPlato) {
         Plato platoExistente = platoRepository.findById(idPlato)

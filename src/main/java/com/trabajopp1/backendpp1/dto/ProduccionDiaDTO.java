@@ -9,10 +9,10 @@ public class ProduccionDiaDTO {
 
     private LocalDate fechaEntrega;
     private String nombrePlato;
-    private String urlImagenPlato; // 🚨 NUEVO CAMPO
+    private String urlImagenPlato; 
     private Long cantidadTotal;
 
-    // 🚨 CONSTRUCTOR ACTUALIZADO
+    
     public ProduccionDiaDTO(LocalDate fechaEntrega, String nombrePlato, String urlImagenPlato, Long cantidadTotal) {
         this.fechaEntrega = fechaEntrega;
         this.nombrePlato = nombrePlato;

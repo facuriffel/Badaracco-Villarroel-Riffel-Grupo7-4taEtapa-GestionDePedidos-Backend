@@ -96,7 +96,7 @@ public class MenuService {
         menuExistente.setPublicado(dto.getPublicado());
         menuDiaRepository.save(menuExistente);
 
-        // ⚠️ Nota: En una actualización, si ya hay pedidos en los platos a eliminar, esto puede fallar.
+       
         // Asumimos que no habrá pedidos activos en la ventana de actualización.
         List<MenuPlato> platosAntiguos = menuPlatoRepository.findByMenuDia_Id(idMenuDia);
         menuPlatoRepository.deleteAll(platosAntiguos);
@@ -116,7 +116,7 @@ public class MenuService {
     }
     
     // --- 4. ELIMINAR OFERTA DE MENÚ DIARIO COMPLETO ---
-    // 🚨 Este método está diseñado para eliminar TODO un menú (MenuDia)
+    //  Este método está diseñado para eliminar TODO un menú (MenuDia)
     @Transactional
     public void eliminarMenuDiario(Integer idMenuDia) {
         if (!menuDiaRepository.existsById(idMenuDia)) {
@@ -142,8 +142,8 @@ public class MenuService {
         menuDiaRepository.deleteById(idMenuDia);
     }
     
-    // --- 5. 🆕 ELIMINAR UN SOLO ÍTEM DE STOCK (MenuPlato) ---
-    // 🚨 ESTE ES EL NUEVO MÉTODO QUE NECESITAS PARA ELIMINAR UNA TARJETA
+    // --- 5.  ELIMINAR UN SOLO ÍTEM DE STOCK (MenuPlato) ---
+    //  ESTE ES EL NUEVO MÉTODO PARA ELIMINAR UNA TARJETA
     @Transactional
     public void eliminarMenuPlatoItem(Integer idMenuPlato) {
         
