@@ -5,11 +5,13 @@ import com.trabajopp1.backendpp1.entity.PedidoDia;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface PedidoDiaRepository extends JpaRepository<PedidoDia, Integer> {
 
     // 1. Consulta para la regla de negocio: SOLO UN PLATO POR DÍA por usuario

@@ -3,6 +3,7 @@ package com.trabajopp1.backendpp1.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.trabajopp1.backendpp1.dto.ProduccionDiaDTO;
 import com.trabajopp1.backendpp1.entity.Pedido;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
     // Para obtener el pedido principal del usuario
     Optional<Pedido> findByUsuario_Id(Integer idUsuario);
