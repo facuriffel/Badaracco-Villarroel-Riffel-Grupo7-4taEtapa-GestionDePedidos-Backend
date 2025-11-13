@@ -10,7 +10,7 @@ public class CorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**") //Aplicar a TODAS las rutas de la API
-            .allowedOrigins("https://aromaslight.netlify.app", "http://127.0.0.1:5500", "http://10.10.19.4:8080", "http://10.10.19.4:8081" , "http://127.0.0.1:8081", "http://localhost:5500", "http://localhost:3000", "http://localhost:8081") 
+            .allowedOrigins("http://127.0.0.1:5500", "http://10.10.19.4:8080", "http://10.10.19.4:8081" , "http://127.0.0.1:8081", "http://localhost:5500", "http://localhost:3000", "http://localhost:8081") 
             .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") 
             .allowedHeaders("*"); //Permitir TODOS los Headers (incluyendo Authorization)
             
