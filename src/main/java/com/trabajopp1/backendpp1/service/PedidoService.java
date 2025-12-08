@@ -31,7 +31,7 @@ public class PedidoService {
     private final MenuPlatoRepository menuPlatoRepository;
     private final UsuarioRepository usuarioRepository;
 
-    // --- Lógica del Pedido Principal (Simplificada) ---
+    //  Lógica del Pedido Principal 
     private Pedido obtenerOcrearPedidoPrincipal(Integer idUsuario) {
 
         Optional<Pedido> pedidoActivo = pedidoRepository.findByUsuario_Id(idUsuario);
@@ -51,9 +51,9 @@ public class PedidoService {
         }
     }
 
-    // ------------------------------------------------------------------
+    
     // 1. AÑADIR PLATO AL PEDIDO (CREATE) - Flujo Empleado
-    // ------------------------------------------------------------------
+    
     @Transactional
     public void agregarPlatoAPedido(PedidoDiaCreacionDTO dto, Integer idUsuario) {
         Pedido pedidoPrincipal = obtenerOcrearPedidoPrincipal(idUsuario);
@@ -86,9 +86,8 @@ public class PedidoService {
         menuPlatoRepository.save(menuPlato);
     }
 
-    // ------------------------------------------------------------------
     // 2. ELIMINAR PLATO DEL PEDIDO (DELETE) - Flujo Empleado
-    // ------------------------------------------------------------------
+
     @Transactional
 public void eliminarPlatoDePedido(Integer idPedidoDia, Integer idUsuario) {
     PedidoDia pedidoDia = pedidoDiaRepository.findById(idPedidoDia)
@@ -106,9 +105,9 @@ public void eliminarPlatoDePedido(Integer idPedidoDia, Integer idUsuario) {
     pedidoDiaRepository.delete(pedidoDia);
 }
 
-    // ------------------------------------------------------------------
+
     // 3. LISTAR PEDIDOS DEL EMPLEADO (READ) - Flujo Empleado
-    // ------------------------------------------------------------------
+
     public List<PedidoDiaDetalleDTO> listarPedidosPorUsuario(Integer idUsuario) {
 
         List<PedidoDia> pedidos = pedidoDiaRepository.findByPedidoUsuarioIdOrderByFechaEntregaAsc(idUsuario);
@@ -129,18 +128,18 @@ public void eliminarPlatoDePedido(Integer idPedidoDia, Integer idUsuario) {
                 .collect(Collectors.toList());
     }
 
-    // ------------------------------------------------------------------
+    
     // 4. RESUMEN DE PEDIDOS PARA LA COCINA (READ) - Flujo Cocina
-    // ------------------------------------------------------------------
+    
     public List<PedidoResumenCocinaDTO> obtenerResumenPedidosParaCocina(LocalDate fecha) {
 
         // Llama al método del repositorio que ejecuta la consulta JPQL con GROUP BY
         return pedidoDiaRepository.obtenerResumenPedidosPorFecha(fecha);
     }
 
-    // ------------------------------------------------------------------
+    
     // 5. CONFIRMAR / MODIFICAR PEDIDO (Usado por Empleado)
-    // ------------------------------------------------------------------
+    
     /**
      * Confirma el Pedido principal o re-confirma después de una modificación.
      * Esta acción debe ser idempotente.
@@ -152,8 +151,7 @@ public void eliminarPlatoDePedido(Integer idPedidoDia, Integer idUsuario) {
         Pedido pedidoPrincipal = pedidoRepository.findByUsuario_Id(idUsuario)
                 .orElseThrow(() -> new EntityNotFoundException("No se encontró un pedido activo para el usuario."));
 
-        // 2. Cambiar el estado SÓLO si está PENDIENTE. Si ya está CONFIRMADO, no hace
-        // nada,
+        // 2. Cambiar el estado SÓLO si está PENDIENTE. Si ya está CONFIRMADO, no hace nada,
         // simplemente devuelve el objeto para permitir la modificación continua.
         if (pedidoPrincipal.getEstado() == Pedido.EstadoPedido.PENDIENTE) {
             pedidoPrincipal.setEstado(Pedido.EstadoPedido.CONFIRMADO);

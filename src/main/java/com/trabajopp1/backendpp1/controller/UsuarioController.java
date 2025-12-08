@@ -18,7 +18,7 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
 
     // --- MÉTODO AUXILIAR PARA OBTENER EL ID DEL TOKEN (Compartido por todos los Controllers) ---
-    // (Asume que ya tienes el método getIdByCorreo(String) en UsuarioService)
+    // (Asume que ya tenemos el método getIdByCorreo(String) en UsuarioService)
     private Integer getAuthenticatedUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         

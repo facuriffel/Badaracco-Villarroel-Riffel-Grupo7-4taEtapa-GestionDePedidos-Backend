@@ -14,9 +14,9 @@ public class PlatoService {
 
     private final PlatoRepository platoRepository;
     
-    // ------------------------------------------------------------------
-    // 1. CREAR PLATO (CREATE)
-    // ------------------------------------------------------------------
+    
+    // 1. CREAR PLATO
+    
     /**
      * Crea un nuevo plato en el sistema a partir de un DTO.
      */
@@ -36,9 +36,9 @@ public class PlatoService {
         return dto;
     }
 
-    // ------------------------------------------------------------------
-    // 2. LISTAR TODOS (READ ALL)
-    // ------------------------------------------------------------------
+    
+    // 2. LISTAR TODOS 
+    
     /**
      * Obtiene la lista completa de platos.
      */
@@ -46,9 +46,9 @@ public class PlatoService {
         return platoRepository.findAll();
     }
     
-    // ------------------------------------------------------------------
+    
     // 3. ACTUALIZAR PLATO (UPDATE)
-    // ------------------------------------------------------------------
+    
     /**
      * Actualiza un plato existente por su ID.
      */
@@ -69,9 +69,9 @@ public class PlatoService {
         return dto;
     }
 
-    // ------------------------------------------------------------------
+    
     // 4. ELIMINAR PLATO (DELETE)
-    // ------------------------------------------------------------------
+    
     /**
      * Elimina un plato por su ID.
      */

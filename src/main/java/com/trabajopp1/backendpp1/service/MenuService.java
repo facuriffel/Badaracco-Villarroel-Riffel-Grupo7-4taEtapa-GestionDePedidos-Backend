@@ -30,7 +30,6 @@ public class MenuService {
         Usuario creador = usuarioRepository.findById(idUsuarioCreador)
             .orElseThrow(() -> new EntityNotFoundException("Usuario creador no encontrado."));
         
-        // Simulación de verificación de rol (debe ser admin/cocina)
         if (!creador.getEsUsuarioRestaurante()) {
             throw new RuntimeException("El usuario no tiene permiso para crear menús.");
         }
@@ -58,7 +57,7 @@ public class MenuService {
         return menuDiaGuardado;
     }
     
-    // --- 2. OBTENER MENÚ PARA EL DÍA (Usado por Empleado) ---
+    // --- 2. OBTENER MENÚ PARA EL DÍA (Empleado) ---
     public List<PlatoMenuDTO> obtenerMenuParaDia(LocalDate fecha) {
     
     // 1.  Llama a la nueva consulta optimizada
@@ -143,7 +142,7 @@ public class MenuService {
     }
     
     // --- 5.  ELIMINAR UN SOLO ÍTEM DE STOCK (MenuPlato) ---
-    //  ESTE ES EL NUEVO MÉTODO PARA ELIMINAR UNA TARJETA
+    
     @Transactional
     public void eliminarMenuPlatoItem(Integer idMenuPlato) {
         

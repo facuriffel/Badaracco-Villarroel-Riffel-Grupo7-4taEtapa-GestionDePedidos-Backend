@@ -1,5 +1,3 @@
-// AuthService.java (Paquete service)
-
 package com.trabajopp1.backendpp1.service;
 
 import com.trabajopp1.backendpp1.dto.AuthRequestDTO;
@@ -22,10 +20,10 @@ public class AuthService {
 
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtTokenService jwtTokenService; // A crear después
+    private final JwtTokenService jwtTokenService;
     private static final String CODIGO_ADMIN_SECRETO = "COCINA2025";
 
-    // 1. Registro de Usuario (Por defecto, Empleado)
+    // 1. Registro de Usuario
     @Transactional
     public Usuario registrar(Usuario usuario, String codigoSecreto) { //  Ahora recibe el código
         if (usuarioRepository.findByCorreo(usuario.getCorreo()).isPresent()) {
@@ -48,7 +46,7 @@ public class AuthService {
     public AuthResponseDTO login(AuthRequestDTO request) {
 
         // Ya que el Controller usó el AuthenticationManager para validar,
-        // aquí solo necesitamos obtener el usuario para generar el token.
+        // aca solo necesitamos obtener el usuario para generar el token.
 
         Usuario usuario = usuarioRepository.findByCorreo(request.getCorreo())
                 .orElseThrow(() -> new RuntimeException("Error: Usuario no existe después de la validación."));
